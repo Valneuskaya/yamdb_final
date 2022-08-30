@@ -61,4 +61,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: valneuskaya/yamdb_final:latest
+          tags: valneuskaya/yamdb_final:v1.08.2022
