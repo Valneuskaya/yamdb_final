@@ -60,5 +60,6 @@ jobs:
         # Пуш образа в Docker Hub
         uses: docker/build-push-action@v2
         with:
+          context: ./api_yamdb
           push: true
           tags: valneuskaya/yamdb_final:v1.08.2022
