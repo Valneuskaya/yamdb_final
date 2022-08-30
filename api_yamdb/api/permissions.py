@@ -1,9 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import permissions
 from rest_framework.permissions import SAFE_METHODS, BasePermission
-
-from users.models import USER, ADMIN, MODERATOR
-
+from users.models import ADMIN, MODERATOR, USER
 
 User = get_user_model()
 
@@ -60,6 +58,7 @@ class IsAdminOrReadOnly(permissions.BasePermission):
         if request.user.is_authenticated:
             return (request.user.role == ADMIN
                     or request.user.is_superuser)
+        return False
 
 
 class ReviewCommentPermissions(permissions.BasePermission):

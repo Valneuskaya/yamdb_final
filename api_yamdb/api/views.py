@@ -12,17 +12,15 @@ from rest_framework.permissions import (IsAuthenticated,
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
-
-from api.filters import TitleFilter
-from api.mixins import AccessMixin
-from api.permissions import (IsAdmin, IsAdminOrReadOnly,
-                             ReviewCommentPermissions)
-from api.serializers import (CategorySerializer, CommentSerializer,
-                             GenreSerializer, ReviewSerializer,
-                             SignUpSerializer, TitleReadSerializer,
-                             TitleWriteSerializer, TokenSerializer,
-                             UserMeSerializer, UserSerializer)
 from reviews.models import Category, Comment, Genre, Review, Title, User
+
+from .filters import TitleFilter
+from .mixins import AccessMixin
+from .permissions import IsAdmin, IsAdminOrReadOnly, ReviewCommentPermissions
+from .serializers import (CategorySerializer, CommentSerializer,
+                          GenreSerializer, ReviewSerializer, SignUpSerializer,
+                          TitleReadSerializer, TitleWriteSerializer,
+                          TokenSerializer, UserMeSerializer, UserSerializer)
 
 
 class GetUpdateViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
@@ -137,9 +135,7 @@ class ReviewViewSet(AccessMixin):
         serializer.save(author=self.request.user, title=title)
 
     def get_queryset(self):
-        queryset = Review.objects.filter(title__id=self.kwargs.get('title_id'))
-
-        return queryset
+        return Review.objects.filter(title__id=self.kwargs.get('title_id'))
 
 
 class CommentViewSet(AccessMixin):
@@ -152,7 +148,6 @@ class CommentViewSet(AccessMixin):
         serializer.save(author=self.request.user, review=review)
 
     def get_queryset(self):
-        queryset = Comment.objects.filter(
+        return Comment.objects.filter(
             review__id=self.kwargs.get('review_id')
         )
-        return queryset
