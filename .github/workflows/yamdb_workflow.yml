@@ -62,7 +62,7 @@ jobs:
         with:
           context: ./api_yamdb
           push: true
-          tags: valneuskaya/yamdb_final:v1.08.2022
+          tags: valneuskaya/yamdb_final:latest
 
   deploy:
     runs-on: ubuntu-latest
