@@ -19,5 +19,7 @@ DB_PORT=5432 # порт для подключения к БД
 RUN pip3 install -r /app/requirements.txt --no-cache-dir
 ### Команды для запуска сервера разработки при старте контейнера
 CMD ["gunicorn", "api_yamdb.wsgi:application", "--bind", "0:8000" ]
+### IP адрес сервера, где развернут проект
+84.201.162.109
 ### Автор
 Валерия Невская
